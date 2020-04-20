@@ -3,7 +3,7 @@ const notes = require('../storages/notes.storage')
 module.exports = {
   name: 'notes',
 
-  listAll({}) {
+  listAll() {
     return Promise.resolve({ notes: notes.slice() })
   },
 
