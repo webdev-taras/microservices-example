@@ -12,7 +12,7 @@ module.exports = {
       return notes.getById({ id })
     },
     create(ctx) {
-      return notes.create(ctx.params.payload)
+      return notes.create(ctx.params)
         .then(note => {
           this.broker.emit('note.created', note)
           return note
