@@ -9,11 +9,11 @@ module.exports = {
   },
   methods: {
     initRoutes(app) {
-      app.get('/notes', this.getnotes)
-      app.get('/notes/:id', this.getnote)
-      app.post('/notes', this.createnote)
+      app.get('/notes', this.getNotes)
+      app.get('/notes/:id', this.getNote)
+      app.post('/notes', this.createNote)
     },
-    getnotes(req, res) {
+    getNotes(req, res) {
       return Promise.resolve()
         .then(() => {
           return this.broker.call('notes.listAll').then(notes => {
@@ -22,7 +22,7 @@ module.exports = {
         })
         .catch(this.handleErr(res))
     },
-    getnote(req, res) {
+    getNote(req, res) {
       const id = req.params.id
       return Promise.resolve()
         .then(() => {
@@ -32,11 +32,11 @@ module.exports = {
         })
         .catch(this.handleErr(res))
     },
-    createnote(req, res) {
+    createNote(req, res) {
       const payload = req.body
       return Promise.resolve()
       .then(() => {
-        return this.broker.call('notes.create', { payload }).then(note =>
+        return this.broker.call('notes.create', payload).then(note =>
           res.send(note)
         )
       })
