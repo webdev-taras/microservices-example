@@ -54,5 +54,14 @@ module.exports = {
     app.use(bodyParser.urlencoded({ extended: true }))
     this.initRoutes(app)
     this.app = app
+  },
+  started() {
+    const port = this.settings.port
+    this.app.listen(port, function () {
+      console.log(`gateway.agent listening on port ${port}`);
+    });
+  },
+  stopped() {
+    this.app.close(() => console.log('gateway.agent stopped'));
   }
 }
