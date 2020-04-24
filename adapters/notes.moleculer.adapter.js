@@ -1,16 +1,16 @@
 
-module.exports = {
+module.exports = ({ broker }) => ({
   name: 'notes',
 
-  listAll({}) {
-    return this.broker.call('notes.listAll')
+  listAll() {
+    return broker.call('notes.listAll')
   },
 
   getById({ id }) {
-    return this.broker.call('notes.getById', { id })
+    return broker.call('notes.getById', { id })
   },
 
   create(note) {
-    return this.broker.call('notes.create', note)
+    return broker.call('notes.create', note)
   }
-}
+})
